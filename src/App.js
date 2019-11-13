@@ -1,26 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { tsPropertySignature } from '@babel/types';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <Button name = {"First Button"}  />
+      <Button name = {"Second Button"}  />
+      <Button name = {"Third Button"}  />
       </header>
     </div>
   );
 }
 
+function Button(props) {
+  const [count, setCount] = useState(0);
+  const [buttonStyle, changeStyle] = useState("");
+
+  
+  function handleClick(){
+    setCount(count + 1);
+    if (count > 1)
+    changeStyle("clicked");
+  }
+  return (
+    <div>
+      <button className={buttonStyle} onClick={handleClick}> {props.name} </button>
+    </div>
+  );
+}
+
+
+    
 export default App;
